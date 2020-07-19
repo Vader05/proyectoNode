@@ -1,0 +1,28 @@
+extends ../layout
+
+block content
+    a(href="/bicicletas") Voler
+
+    br
+    br
+    br
+    br
+    h1 Nueva Bicicleta
+
+    br
+    br
+
+    form(action="/bicicletas/create", method="post")
+        label(for="id") Id: 
+        input#id(type="text", name ="id")
+        label(for="color") Color: 
+        input#color(type="text", name ="color")
+        label(for="modelo") Modelo: 
+        input#modelo(type="text", name ="modelo")
+        label(for="lat") latitud: 
+        input#lat(type="text", name ="lat")
+        label(for="long") longitud: 
+        input#long(type="text", name ="long")
+        br
+        br
+        input(type="submit", value="ok")
