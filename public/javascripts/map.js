@@ -9,6 +9,17 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
     accessToken: 'your.mapbox.access.token'
 }).addTo(map);
 
-L.marker([-12.1247789,-77.0342339]).addTo(map);
-L.marker([-12.1242487,-77.0344748]).addTo(map);
-L.marker([-12.1242487,-77.0344728]).addTo(map);
+//L.marker([-12.1247789,-77.0342339]).addTo(map);
+//L.marker([-12.1242487,-77.0344748]).addTo(map);
+//L.marker([-12.1242487,-77.0344728]).addTo(map);
+
+$.ajax({
+    dataType: "json",
+    url: "api/bicicletas",
+    success: function(result){
+        console.log(result);
+        result.bicicletas.forEach(function(bici){
+            L.marker(bici.ubicacion, {title:bici.id}).addTo(map)
+        })
+    }
+})

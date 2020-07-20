@@ -31,9 +31,9 @@ bicicleta.removeById= function(aBiciId){
 }
 
 
-var a= new bicicleta(1,'rojo','urbana',[-34.6012424,-58.3861497]);
-var b= new bicicleta(2,'blanca','urbana',[-34.6012424,-58.3861497]);
-var c= new bicicleta(3,'verde','urbana',[-34.6012424,-58.3861497]);
+var a= new bicicleta(1,'rojo','urbana',[-12.1247789,-77.0342339]);
+var b= new bicicleta(2,'blanca','urbana',[-12.1242487,-77.0344748]);
+var c= new bicicleta(3,'verde','urbana',[-12.1276181,-77.0354018]);
 
 bicicleta.add(a);
 bicicleta.add(b);
