@@ -1,3 +1,50 @@
+var mongoose= require('mongoose');
+var schema=mongoose.schema;
+
+var bicicletaSchema= new mongoose.Schema({
+    code: Number,
+    color : String,
+    modelo: String,
+    ubicacion: {
+        type: [Number], index: {type: '2dsphere', sparse: true}
+    }
+});
+
+bicicletaSchema.statics.createInstance= function(code, color , modelo, ubicacion){
+    return new this({
+        code: code,
+        color: color,
+        modelo: modelo,
+        ubicacion: ubicacion
+    });
+}
+
+bicicletaSchema.methods.toString= function(){
+    return 'code: '+this.code+'| color: '+this.color
+}
+bicicletaSchema.statics.allBicis= function(cb){
+    return this.find({}, cb);
+}
+
+bicicletaSchema.statics.add = function(aBici,cb){
+    this.create(aBici,cb);
+}
+
+bicicletaSchema.statics.findByCode = function(aCode, cb){
+    return this.findOne({ code:aCode }, cb);
+};
+
+bicicletaSchema.statics.updateOne = function(aBici, cb){    
+    this.update({code:aBici.code}, {$set: aBici}, cb);
+};
+
+bicicletaSchema.statics.removeByCode = function(aCode, cb){
+    return this.deleteOne({ code:aCode }, cb);
+};
+
+module.exports = mongoose.model('Bicicleta', bicicletaSchema);
+
+ /*
 var bicicleta = function(id, color, modelo, ubicacion){
     this.id=id;
     this.color=color;
@@ -38,5 +85,6 @@ var c= new bicicleta(3,'verde','urbana',[-12.1276181,-77.0354018]);
 bicicleta.add(a);
 bicicleta.add(b);
 bicicleta.add(c);
-
-module.exports = bicicleta;
+*/
+//module.exports = bicicleta;
+ 

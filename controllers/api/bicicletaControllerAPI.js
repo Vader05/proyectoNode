@@ -1,9 +1,15 @@
 var Bicicleta= require("../../models/bicicleta")
-
+/*
 exports.bicicleta_lis= function(req,res){
     res.status(200).json({
         bicicletas: Bicicleta.allBicis
     });
+}
+*/
+exports.bicicleta_list = function (req,res){
+    Bicicleta.allBicis(function(err,bicis){
+        res.status(200).json({Bicicletas:bicis});
+    })
 }
 
 exports.bicicleta_create= function(req,res){
