@@ -1,0 +1,33 @@
+link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css')
+script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js')
+script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js')
+
+head
+	link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css')
+	script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js')
+	script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js')
+	link(rel='stylesheet' href='../../stylesheets/login.css')
+	meta(name='google-site-verification' content='dbw5cvburaxi537rp9qi5ug2174vb6jwhwirwpslik8')
+	script(src='https://apis.google.com/js/client:platform.js?onload=startApp')
+	meta(name='google-signin-client_id' content='YOUR_CLIENT_ID.apps.googleusercontent.com')
+
+body#loginForm
+	.container
+		.login-form
+			.main-div
+				.register
+					a(href='/usuarios/create') registrarse
+				.panel
+					if info && info.message
+						div.alert.alert_danger
+						=info.message
+					h2 Admin Login
+					p Por Favor, ingrese su email y password
+				form#login(action='/login' method='post')
+					.form-group
+						input#username.form-control(type="email" placeholder='email address' name='email'  )
+					.form-group
+						input#password.form-control(type="password" placeholder='password' name='password' )
+					.forgot.form-group
+						a(href='/forgotPassword') Olvidé mi password
+					button.btn.btn-primary(type='submit') Login

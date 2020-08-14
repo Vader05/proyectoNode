@@ -1,0 +1,19 @@
+extends ../layout
+
+block content
+ a#volver(href="/usuarios") volver
+  
+  
+ .card
+  br
+  h1 actualizando usuarios
+  
+
+  form.form-group(action=`/usuarios/${usuario.id}/update` method='post')
+    label(for="nombre") Nombre:
+    input#nombre.form-control(type='text' name='nombre' value=usuario.nombre class=errors.nombre ? 'is-invalid':'')
+    if errors.nombre
+      small#nombreHelp.text-danger
+        =errors.nombre.message
+    br
+    button.btn.btn-primary(type='submit' ) OK 

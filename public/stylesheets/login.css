@@ -1,0 +1,101 @@
+body{  background: #000046; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #000046, #1cb5e0); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #000046, #1cb5e0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    }
+
+.login-heading{color: #fff; font-size: 23px;}
+    .panel {text-align: center;;}
+    .panel h2 {color: #fff; font-size: 30px; margin: 0 0 8px 0;}
+    .panel p {color: #fff; font-size: 14PX; margin-bottom: 30px; line-height: 24px;}
+    .login-form .form-control{
+        background: #f7f7f7 none repeat scroll 0 0;
+        border: 1px solid #000000;
+        border-radius: 5px;
+        font-size: 14px;
+        height: 50px;
+        line-height: 50px;
+    }
+    .main-div{
+        background: #777777 none repeat scroll 0 0;
+        border-radius: 5px;
+        margin: 10px auto 30px;
+        max-width: 38%;
+        padding: 10px 70px 20px 71px; 
+        border: 1px solid #000000;  
+    }
+    .register{
+    text-align: right;
+    }
+    .register a{
+        font-size: 20px;
+        color: #fff;
+    }
+    .login-form .form-group{
+    margin-bottom: 15px;
+    }
+    #login-form{text-align: center;}
+    .forgot a{
+        color: #fff;
+        font-size: 14px;
+        text-decoration: none;
+    }
+    .forgot a:hover{
+        color: green;
+        text-decoration: underline;
+    }
+    
+    
+    .login-form .btn.btn-primary{
+        background: green none repeat scroll 0 0;
+        border-color: #000000;
+        color: #fff;
+        font-size: 14px;
+        width: 100%;
+        height: 50px;
+        line-height: 50px;
+        padding: 0;
+        margin-bottom: 10px;
+    }
+    .login-form .btn.btn-danger{
+    width: 100%;
+    border-color: #000000;
+    margin-bottom: 10px;
+    height: 50px;
+    
+    }
+    .login-form .btn.btn-secundary{
+        background: #0909d0 none repeat scroll;
+        border-color: #000000;
+        color: #fff;
+        font-size: 14px;
+        width: 100%;
+        height: 50px;
+        line-height: 50px;
+        padding: 0;
+    }
+    .regresar{
+        line-height: 50px;
+        color: #fff;
+        font-size: 14px;
+    
+    }
+    .forgot{
+        text-align: left; margin-top:15px ;
+        line-height: 60px;
+    }
+    .botto-text{
+        color: #fff;
+        font-size: 14px;
+        margin: auto;
+    
+    }
+    .login-form .btn.btn-primary.reset{
+        background: green none repeat scroll 0 0;
+    }
+    .back{
+        text-align: left;margin-top: 10px;
+    }
+    .back a{
+        color: #444444;font-size: 14px; text-decoration: none;
+    }
+    

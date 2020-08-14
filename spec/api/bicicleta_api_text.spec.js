@@ -3,7 +3,7 @@ var Bicicleta = require('../../models/bicicleta');
 var server= require('../../bin/www');
 var request = require('request');
 
-var base_url= "http://localhost:5000/api/bicicletas";
+var base_url= "http://localhost:3000/api/bicicletas";
 
 describe("Bicicleta API", ()=>{
     beforeEach(function(done){
@@ -37,17 +37,29 @@ describe("Bicicleta API", ()=>{
 
     describe("POST BICICLETAS /create",()=>{
         it("status 200", function(done){
-            var headers= {'content-type': 'application/json'};
-            var aBici= {"code":10,"color":"rojo","modelo":"urbana","lat":-132,"long":-77};
-            request.post({
-                headers: headers,
-                url: base_url+'/create',
-                body: aBici
-            }, function(error, response, body){
+            const options = {
+                headers: {'content-type' : 'application/json'},
+                url: base_url+"/create",
+                body: {
+                    'code':'10',
+                    'color':'rojo',
+                    'modelo':'urbana',
+                    'lat':'-132',
+                    'long':'-77'
+                },
+                json: true
+            }
+            request.post(options,
+                function(error, response, body){
+
+                if(error) console.log("ERROR!",error);
                 expect(response.statusCode).toBe(200);
-                var bici= JSON.parse(body).bicicleta;
-                console.log(bici);
-                expect(bici.color).toBe("roja");
+
+                //var bici = JSON.parse(body).bicicleta; con esto me bota un error de sintaxis
+                var bici = response.body.bicicleta;
+                //console.log(bici);
+
+                expect(bici.color).toBe("rojo");
                 expect(bici.ubicacion[0]).toBe(-132);
                 expect(bici.ubicacion[1]).toBe(-77);
                 done();

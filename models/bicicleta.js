@@ -1,7 +1,7 @@
 var mongoose= require('mongoose');
-var schema=mongoose.schema;
+var Schema=mongoose.Schema;
 
-var bicicletaSchema= new mongoose.Schema({
+var bicicletaSchema= new Schema({
     code: Number,
     color : String,
     modelo: String,
