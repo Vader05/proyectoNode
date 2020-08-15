@@ -74,7 +74,7 @@ usuarioSchema.methods.enviar_email_bienvenida=function (cb) {
             from:'kevin.cueva2@unmsm.edu.pe',
             to: email_destination,
             subject:'verificacion de cuenta',
-            text:'Hola,\n\n'+'por favor verificar su cuenta haga click en el este link:\n'+'http://localhost:3000'+'\/token/confirmation\/'+ token.token + '\n'
+            text:'Hola,\n\n'+'por favor verificar su cuenta haga click en el este link:\n'+'https://redbicicletas05.herokuapp.com'+'\/token/confirmation\/'+ token.token + '\n'
             }       
         mailer.sendMail(mailOptions, function (err) {
             if(err){ return console.log(err.message);}
@@ -94,7 +94,7 @@ usuarioSchema.methods.resetPassword = function (cb) {
             from:'kevin.cueva2@unmsm.edu.pe',
             to: email_destination,
             subject:'Reseteo de password de cuenta',
-            text:'Hola,\n\n'+'por favor, para resetear el password de su cuenta haga click en el este link:\n'+'http://localhost:3000'+'\/resetPassword\/'+ token.token + '\n'           
+            text:'Hola,\n\n'+'por favor, para resetear el password de su cuenta haga click en el este link:\n'+'https://redbicicletas05.herokuapp.com'+'\/resetPassword\/'+ token.token + '\n'           
         };
         mailer.sendMail(mailOptions, function (err) {
             if(err){ return cb(err);}
