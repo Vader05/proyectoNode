@@ -4,7 +4,7 @@ const sgTransport = require('nodemailer-sendgrid-transport');
 
 let mailConfig;
 if (process.env.NODE_ENV === 'production') {
-   
+   console.log('entra con sendgrid');
     const options={
         auth:{
             api_key: process.env.SENDGRID_API_SECRET

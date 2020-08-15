@@ -71,7 +71,7 @@ usuarioSchema.methods.enviar_email_bienvenida=function (cb) {
         if (err){return console.log(err.message);}
         
         const mailOptions ={
-            from:'kevin.cueva@hotmail.com',
+            from:'kevin.cueva2@unmsm.edu.pe',
             to: email_destination,
             subject:'verificacion de cuenta',
             text:'Hola,\n\n'+'por favor verificar su cuenta haga click en el este link:\n'+'http://localhost:3000'+'\/token/confirmation\/'+ token.token + '\n'
@@ -91,7 +91,7 @@ usuarioSchema.methods.resetPassword = function (cb) {
         if (err){return cb(err);}
 
         const mailOptions={
-            from:'kevin.cueva2@gmail.com',
+            from:'kevin.cueva2@unmsm.edu.pe',
             to: email_destination,
             subject:'Reseteo de password de cuenta',
             text:'Hola,\n\n'+'por favor, para resetear el password de su cuenta haga click en el este link:\n'+'http://localhost:3000'+'\/resetPassword\/'+ token.token + '\n'           
