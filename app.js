@@ -131,8 +131,12 @@ app.use('/api/reservas',reservasAPIrouter);
 app.use('/usuarios', usuarioRouter);
 app.use('/token', tokenRouter);
 
-app.use('/politicas_privacidad', function(req, res){
+app.use('/politicas-privacidad', function(req, res){
   res.sendFile(path.join(__dirname,'public/politicas-privacidad.html'));
+});
+
+app.use('/google06d366ab85816781', function(req, res){
+  res.sendFile(path.join(__dirname,'public/google06d366ab85816781.html'));
 });
 
 
