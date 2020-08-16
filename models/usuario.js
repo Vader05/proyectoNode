@@ -41,7 +41,9 @@ var usuarioSchema = new Schema({
     verificado:{
         type: Boolean,
         default: false
-    }
+    },
+    googleId: String,
+    facebookId: String
 });
 usuarioSchema.plugin(uniqueValidator, {message: 'el {PATH} ya existe con otro usuario'});
 
@@ -75,7 +77,7 @@ usuarioSchema.methods.enviar_email_bienvenida=function (cb) {
             from:'kevin.cueva2@unmsm.edu.pe',
             to: email_destination,
             subject:'verificacion de cuenta',
-            text:'Hola,\n\n'+'por favor verificar su cuenta haga click en el este link:\n'+'http://localhost:3000'+'\/token/confirmation\/'+ token.token + '\n'
+            text:'Hola,\n\n'+'por favor verificar su cuenta haga click en el este link:\n'+process.env.HOST+'\/token/confirmation\/'+ token.token + '\n'
             }       
         mailer.sendMail(mailOptions, function (err) {
             if(err){ return console.log(err.message);}
@@ -95,7 +97,7 @@ usuarioSchema.methods.resetPassword = function (cb) {
             from:'kevin.cueva2@unmsm.edu.pe',
             to: email_destination,
             subject:'Reseteo de password de cuenta',
-            text:'Hola,\n\n'+'por favor, para resetear el password de su cuenta haga click en el este link:\n'+'http://localhost:3000'+'\/resetPassword\/'+ token.token + '\n'           
+            text:'Hola,\n\n'+'por favor, para resetear el password de su cuenta haga click en el este link:\n'+process.env.HOST+'\/resetPassword\/'+ token.token + '\n'           
         };
         mailer.sendMail(mailOptions, function (err) {
             if(err){ return cb(err);}
@@ -135,5 +137,34 @@ usuarioSchema.statics.findOneOrCreateByGoogle = function findOneOrCreate(conditi
     );
 }
 
+
+usuarioSchema.statics.findOneOrCreateByFacebook = function findOneOrCreate(condition, callback){
+    const self= this;
+    console.log(condition);
+    self.findOne({
+        $or: [
+            {'facebookId': condition.id }, {'email': condition.emails[0].value}
+        ]},(err,result)=>{
+            if(result){
+                callback(err, result)
+            }else{
+                console.log('_________CONDITION_______');
+                console.log(condition);
+                let values = {};
+                values.facebookId= condition.id;
+                values.email= condition.emails[0].value;
+                values.nombre = condition.displayName || 'SIN NOMBRE';
+                values.verificado= true;
+                values.password= crypto.randomBytes(16).toString('hex');
+                console.log('_______VALUES______');
+                console.log(values);
+                self.create(values, (err, result)=>{
+                    if (err) {console.log(err);}
+                    return callback(err, result);
+                });
+            }
+        }
+    );
+}
 
 module.exports= mongoose.model('Usuario', usuarioSchema);

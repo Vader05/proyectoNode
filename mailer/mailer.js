@@ -21,7 +21,7 @@ if (process.env.NODE_ENV === 'production') {
         }
         mailConfig=sgTransport(options);
     }else{
-        //process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+        
         mailConfig={
             host: 'smtp.ethereal.email',
             port: 587,

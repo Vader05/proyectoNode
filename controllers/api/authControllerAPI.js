@@ -33,13 +33,14 @@ module.exports={
         if (req.user) {
             req.user.save().then( ()=>{
                 const token=jwt.sign({id: req.user.id}, req.app.get('secretKey'),{expiresIn:'7d'});
-                res.status(200).json({message:"usuario encontrado o creado!",data:{user:req.user, token:token}});
+                res.status(200).json({message:"Usuario encontrado o creado!",data:{user:req.user, token:token}});
             }).catch( (err)=>{
                 console.log(err);
                 res.status(500).json({message: err.message});
-            })
+            });
         }else{
             res.status(401);
+            console.log('no hay usuario');
         }
     },
 };
