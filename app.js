@@ -132,7 +132,7 @@ app.use('/usuarios', usuarioRouter);
 app.use('/token', tokenRouter);
 
 app.use('/politicas_privacidad', function(req, res){
-  res.sendfile('public/politicas-privacidad.html');
+  res.sendFile(path.join(__dirname,'public/politicas-privacidad.html'));
 });
 
 
