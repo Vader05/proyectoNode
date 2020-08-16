@@ -135,8 +135,8 @@ app.use('/politicas-privacidad', function(req, res){
   res.sendFile(path.join(__dirname,'public/politicas-privacidad.html'));
 });
 
-app.use('/google06d366ab85816781', function(req, res){
-  res.sendFile(path.join(__dirname,'public/google06d366ab85816781.html'));
+app.use('/google2de9b3f2bd97ccdf', function(req, res){
+  res.sendFile(path.join(__dirname,'public/google2de9b3f2bd97ccdf.html'));
 });
 
 
