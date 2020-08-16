@@ -131,6 +131,10 @@ app.use('/api/reservas',reservasAPIrouter);
 app.use('/usuarios', usuarioRouter);
 app.use('/token', tokenRouter);
 
+app.use('/politicas_privacidad', function(req, res){
+  res.sendfile('public/politicas-privacidad.html');
+});
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
