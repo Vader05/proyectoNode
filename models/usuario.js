@@ -7,6 +7,7 @@ const Token = require('../models/token');
 const crypto = require('crypto');
 const mailer = require ('../mailer/mailer');
 const bcrypt = require('bcrypt');
+const { callbackPromise } = require('nodemailer/lib/shared');
 const saltRounds = 10;
 
 
@@ -104,4 +105,35 @@ usuarioSchema.methods.resetPassword = function (cb) {
         cb(null);
     });
 }
+
+usuarioSchema.statics.findOneOrCreateByGoogle = function findOneOrCreate(condition, callback){
+    const self= this;
+    console.log(condition);
+    self.findOne({
+        $or: [
+            {'googleId': condition.id }, {'email': condition.emails[0].value}
+        ]},(err,result)=>{
+            if(result){
+                callback(err, result)
+            }else{
+                console.log('_________CONDITION_______');
+                console.log(condition);
+                let values = {};
+                values.googleId= condition.id;
+                values.email= condition.emails[0].value;
+                values.nombre = condition.displayName || 'SIN NOMBRE';
+                values.verificado= true;
+                values.password= condition._json.etag;
+                console.log('_______VALUES______');
+                console.log(values);
+                self.create(values, (err, result)=>{
+                    if (err) {console.log(err);}
+                    return callback(err, result);
+                });
+            }
+        }
+    );
+}
+
+
 module.exports= mongoose.model('Usuario', usuarioSchema);

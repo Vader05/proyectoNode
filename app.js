@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var passport = require ('./config/passport');
 const session = require ('express-session');
+const MongoDBStore = require('connect-mongodb-session')(session);
 const jwt= require('jsonwebtoken');
 
 var indexRouter = require('./routes/index');
@@ -19,7 +20,19 @@ var authAPIRouter= require('./routes/api/auth');
 const Usuario= require('./models/usuario');
 const Token= require('./models/token');
 
-const store = new session.MemoryStore;
+let store;
+if (process.env.NODE_ENV=='development'){
+  store = new session.MemoryStore;
+}else{
+  store = new MongoDBStore({
+    uri: process.env.MONGO_URI,
+    collection: 'sessions'
+  });
+  store.on('error', function(error){
+    assert.ifError(error);
+    assert.ok(false);
+  });
+}
 
 var app = express();
 
@@ -35,6 +48,7 @@ app.use(session({
 
 var mongoose= require('mongoose');
 const { allowedNodeEnvironmentFlags } = require('process');
+const { assert } = require('console');
 
 //mongodb+srv://vader05:<password>@cluster0.vucmz.mongodb.net/<dbname>?retryWrites=true&w=majority
 //var mongoDB= 'mongodb://localhost/red_bicicletas';
@@ -138,6 +152,16 @@ app.use('/politicas-privacidad', function(req, res){
 app.use('/google2de9b3f2bd97ccdf', function(req, res){
   res.sendFile(path.join(__dirname,'public/google2de9b3f2bd97ccdf.html'));
 });
+
+app.get('/auth/google',
+  passport.authenticate('google',{ scope:[
+    'https://www.googleapis.com/auth/plus.login',
+    'https://www.googleapis.com/auth/plus.profile.emails.read']}));
+
+app.get('/auth/google/callback', passport.authenticate('google',{
+  successRedirect:'/',
+  failureRedirect: '/error'
+}));
 
 
 // catch 404 and forward to error handler
