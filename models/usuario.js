@@ -76,7 +76,7 @@ usuarioSchema.methods.enviar_email_bienvenida=function (cb) {
         const mailOptions ={
             from:'kevin.cueva2@unmsm.edu.pe',
             to: email_destination,
-            subject:'verificacion de cuenta',
+            subject:'verificacion de cuenta',                                   //LOCAL 'http://localhost:3000'  
             text:'Hola,\n\n'+'por favor verificar su cuenta haga click en el este link:\n'+process.env.HOST+'\/token/confirmation\/'+ token.token + '\n'
             }       
         mailer.sendMail(mailOptions, function (err) {
@@ -97,7 +97,7 @@ usuarioSchema.methods.resetPassword = function (cb) {
             from:'kevin.cueva2@unmsm.edu.pe',
             to: email_destination,
             subject:'Reseteo de password de cuenta',
-            text:'Hola,\n\n'+'por favor, para resetear el password de su cuenta haga click en el este link:\n'+process.env.HOST+'\/resetPassword\/'+ token.token + '\n'           
+            text:'Hola,\n\n'+'por favor, para resetear el password de su cuenta haga click en el este link:\n'+process.env.HOST+'\/resetPassword\/'+ token.token + '\n'        
         };
         mailer.sendMail(mailOptions, function (err) {
             if(err){ return cb(err);}

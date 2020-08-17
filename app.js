@@ -1,4 +1,5 @@
 require('dotenv').config();
+require('newrelic');
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -152,11 +153,15 @@ app.use('/politicas-privacidad', function(req, res){
 app.use('/google2de9b3f2bd97ccdf', function(req, res){
   res.sendFile(path.join(__dirname,'public/google2de9b3f2bd97ccdf.html'));
 });
-
+/*
 app.get('/auth/google',
   passport.authenticate('google',{ scope:[
     'https://www.googleapis.com/auth/plus.login',
     'https://www.googleapis.com/auth/plus.profile.emails.read']}));
+*/
+
+app.get('/auth/google',
+  passport.authenticate('google',{ scope:['profile']}));
 
 app.get('/auth/google/callback', passport.authenticate('google',{
   successRedirect:'/',
