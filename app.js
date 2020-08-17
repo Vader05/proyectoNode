@@ -157,7 +157,7 @@ app.use('/google2de9b3f2bd97ccdf', function(req, res){
 app.get('/auth/google',
   passport.authenticate('google',{ scope:[
     'https://www.googleapis.com/auth/userinfo.profile',
-    'https://www.googleapis.com/auth/user.emails.read']}));
+    'https://www.googleapis.com/auth/userinfo.email']}));
 
 /*
 app.get('/auth/google',
