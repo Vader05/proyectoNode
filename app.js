@@ -153,16 +153,16 @@ app.use('/politicas-privacidad', function(req, res){
 app.use('/google2de9b3f2bd97ccdf', function(req, res){
   res.sendFile(path.join(__dirname,'public/google2de9b3f2bd97ccdf.html'));
 });
-/*
+
 app.get('/auth/google',
   passport.authenticate('google',{ scope:[
-    'https://www.googleapis.com/auth/plus.login',
-    'https://www.googleapis.com/auth/plus.profile.emails.read']}));
-*/
+    'https://www.googleapis.com/auth/profile',
+    'https://www.googleapis.com/auth/profile.emails.read']}));
 
+/*
 app.get('/auth/google',
   passport.authenticate('google',{ scope:['profile']}));
-
+*/
 app.get('/auth/google/callback', passport.authenticate('google',{
   successRedirect:'/',
   failureRedirect: '/error'
